@@ -1,3 +1,4 @@
 <Solution>
-  <Project Path="HigherLuck/HigherLuck.csproj" />
+  <Folder Name="/Solution Items/" />
+  <Project Path="HigherLuck/HigherLuck.csproj" Id="8255272b-f8bc-4f77-af36-51db3329423c" />
 </Solution>
