@@ -14,12 +14,18 @@ namespace HigherLuck
         public Form1()
         {
             InitializeComponent();
+
+            numericUpDown1.Maximum = 30;
+            numericUpDown1.Minimum = 5;
+            numericUpDown1.Value = 5;
+
+
             ShowGame();
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            StartPart2("Player 1", "Player 2", 5);
+            StartPart2(textBox2.Text, textBox3.Text, (int)numericUpDown1.Value);
         }
 
         private void resetButton_Click(object sender, EventArgs e)
@@ -116,9 +122,9 @@ namespace HigherLuck
             }
 
             UpdatePoints();
-        }   // <-- ShowGame ends here
+        }   
 
-        // ===== SECTION 4: player panels =====
+       
         private static readonly string ImageFolder =
             Path.Combine(Application.StartupPath, "images");
 
