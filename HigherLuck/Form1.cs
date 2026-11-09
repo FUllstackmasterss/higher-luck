@@ -5,6 +5,7 @@ using System.Windows.Forms;
 
 namespace HigherLuck
 {
+ 
     public partial class Form1 : Form
     {
         Game game = new Game();
@@ -202,6 +203,144 @@ namespace HigherLuck
             startButton.Enabled = false;
         }
 
+        private RadioButton[] avatarRadios;
+        private PictureBox[] avatarPictures;
+        private readonly string[] avatarFiles = { "Icon01.png", "Icon02.png", "Icon03.png", "Icon04.png" };
+
+        private void SetUpPart3()
+        {
+            avatarRadios = new[] { radioButton1, radioButton2, radioButton3, radioButton4 };
+            avatarPictures = new[] { pictureBox1, pictureBox2, pictureBox3, pictureBox4 };
+
+            for (int i = 0; i < avatarRadios.Length; i++)
+            {
+                RadioButton radio = avatarRadios[i];
+
+                avatarPictures[i].Cursor = Cursors.Hand;
+                avatarPictures[i].Click += (s, e) => { if (radio.Enabled) radio.Checked = true; };
+                radio.CheckedChanged += AvatarRadio_CheckedChanged;
+            }
+
+            ResetPart3();
+        }
+
+        private string SelectedAvatarFile()
+        {
+            for (int i = 0; i < avatarRadios.Length; i++)
+            {
+                if (avatarRadios[i].Checked && avatarRadios[i].Enabled) return avatarFiles[i];
+            }
+            return null;
+        }
+
+        private void AvatarRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radio = (RadioButton)sender;
+            if (!radio.Checked) return;
+
+            string file = SelectedAvatarFile();
+            if (file == null) return;
+
+            PictureBox target;
+            if (player1 == null) target = picPlayer1;
+            else if (player2 == null) target = picPlayer2;
+            else return;
+
+            target.SizeMode = PictureBoxSizeMode.Zoom;
+            target.Image?.Dispose();
+            target.Image = LoadImage(file);
+        }
+
+        private void LockSelectedAvatar()
+        {
+            foreach (RadioButton radio in avatarRadios)
+            {
+                if (radio.Checked)
+                {
+                    radio.Checked = false;
+                    radio.Enabled = false;
+                }
+            }
+        }
+
+        private void btnSetUpFirstPlayer_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Enter the first player's name.");
+                textBox2.Focus();
+                return;
+            }
+
+            string avatarFile = SelectedAvatarFile();
+            if (avatarFile == null)
+            {
+                MessageBox.Show("Choose an avatar for the first player.");
+                return;
+            }
+
+            player1 = new Player(textBox2.Text.Trim().ToUpper(), avatarFile);
+            ShowFirstPlayer();
+
+            textBox2.Enabled = false;
+            button1.Enabled = false;
+            button2.Enabled = true;
+            LockSelectedAvatar();
+        }
+
+        private void btnSetUpSecondPlayer_Click(object sender, EventArgs e)
+        {
+            if (player1 == null)
+            {
+                MessageBox.Show("Set up the first player first.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Enter the second player's name.");
+                textBox3.Focus();
+                return;
+            }
+
+            string avatarFile = SelectedAvatarFile();
+            if (avatarFile == null)
+            {
+                MessageBox.Show("Choose an avatar for the second player.");
+                return;
+            }
+
+            player2 = new Player(textBox3.Text.Trim().ToUpper(), avatarFile);
+            ShowSecondPlayer();
+
+            textBox3.Enabled = false;
+            button2.Enabled = false;
+            LockSelectedAvatar();
+            foreach (RadioButton radio in avatarRadios) radio.Enabled = false;
+        }
+
+        private void ResetPart3()
+        {
+            ResetSection4();
+            ShowGame();
+
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox2.Enabled = true;
+            textBox3.Enabled = true;
+            numericUpDown1.Value = 5;
+
+            foreach (RadioButton radio in avatarRadios)
+            {
+                radio.Enabled = true;
+                radio.Checked = false;
+            }
+
+            button1.Enabled = true;
+            button2.Enabled = false;
+            textBox2.Focus();
+        }
+
         private void gameArea_Enter(object sender, EventArgs e)
         {
 
@@ -209,7 +348,7 @@ namespace HigherLuck
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            SetUpPart3();
         }
 
         private void grpPlayer1_Enter(object sender, EventArgs e)
@@ -264,7 +403,7 @@ namespace HigherLuck
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            ResetPart3();
         }
     }
 }

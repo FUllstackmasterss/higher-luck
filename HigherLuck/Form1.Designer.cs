@@ -325,6 +325,7 @@ namespace HigherLuck
             this.button1.Size = new System.Drawing.Size(310, 55);
             this.button1.TabIndex = 7;
             this.button1.Text = "Set Up First player ";
+            this.button1.Click += new System.EventHandler(this.btnSetUpFirstPlayer_Click);
             // 
             // button2
             // 
@@ -333,6 +334,7 @@ namespace HigherLuck
             this.button2.Size = new System.Drawing.Size(310, 55);
             this.button2.TabIndex = 8;
             this.button2.Text = "Set Up Second player ";
+            this.button2.Click += new System.EventHandler(this.btnSetUpSecondPlayer_Click);
             // 
             // button3
             // 
