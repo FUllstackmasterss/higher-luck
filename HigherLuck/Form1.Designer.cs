@@ -1,6 +1,9 @@
-using System;
-using System.Drawing;
 using System.Windows.Forms;
+using System.Drawing;
+using System.ComponentModel;
+using System;
+
+
 
 namespace HigherLuck
 {
@@ -19,463 +22,426 @@ namespace HigherLuck
 
         private void InitializeComponent()
         {
-            this.gameArea = new System.Windows.Forms.GroupBox();
-            this.roundText = new System.Windows.Forms.Label();
-            this.turnText = new System.Windows.Forms.Label();
-            this.rollButton = new System.Windows.Forms.Button();
-            this.firstDiceText = new System.Windows.Forms.Label();
-            this.secondDiceText = new System.Windows.Forms.Label();
-            this.startButton = new System.Windows.Forms.Button();
-            this.resetButton = new System.Windows.Forms.Button();
-            this.grpPlayer1 = new System.Windows.Forms.GroupBox();
-            this.lblPoint1 = new System.Windows.Forms.Label();
-            this.picPlayer1 = new System.Windows.Forms.PictureBox();
-            this.grpPlayer2 = new System.Windows.Forms.GroupBox();
-            this.lblPoint2 = new System.Windows.Forms.Label();
-            this.picPlayer2 = new System.Windows.Forms.PictureBox();
-            this.Initializations = new System.Windows.Forms.GroupBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.BtnReport = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.Report = new System.Windows.Forms.Label();
-            this.gameArea.SuspendLayout();
-            this.grpPlayer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picPlayer1)).BeginInit();
-            this.grpPlayer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picPlayer2)).BeginInit();
-            this.Initializations.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // gameArea
-            // 
-            this.gameArea.Controls.Add(this.roundText);
-            this.gameArea.Controls.Add(this.turnText);
-            this.gameArea.Controls.Add(this.rollButton);
-            this.gameArea.Controls.Add(this.firstDiceText);
-            this.gameArea.Controls.Add(this.secondDiceText);
-            this.gameArea.Location = new System.Drawing.Point(53, 414);
-            this.gameArea.Name = "gameArea";
-            this.gameArea.Size = new System.Drawing.Size(422, 282);
-            this.gameArea.TabIndex = 0;
-            this.gameArea.TabStop = false;
-            this.gameArea.Text = "Game";
-            this.gameArea.Enter += new System.EventHandler(this.gameArea_Enter);
-            // 
-            // roundText
-            // 
-            this.roundText.Location = new System.Drawing.Point(15, 25);
-            this.roundText.Name = "roundText";
-            this.roundText.Size = new System.Drawing.Size(320, 25);
-            this.roundText.TabIndex = 0;
-            // 
-            // turnText
-            // 
-            this.turnText.AutoEllipsis = true;
-            this.turnText.BackColor = System.Drawing.Color.Black;
-            this.turnText.ForeColor = System.Drawing.Color.White;
-            this.turnText.Location = new System.Drawing.Point(15, 60);
-            this.turnText.Name = "turnText";
-            this.turnText.Size = new System.Drawing.Size(320, 45);
-            this.turnText.TabIndex = 1;
-            this.turnText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // rollButton
-            // 
-            this.rollButton.Location = new System.Drawing.Point(15, 120);
-            this.rollButton.Name = "rollButton";
-            this.rollButton.Size = new System.Drawing.Size(320, 35);
-            this.rollButton.TabIndex = 2;
-            this.rollButton.Text = "ROLL";
-            this.rollButton.Click += new System.EventHandler(this.rollButton_Click);
-            // 
-            // firstDiceText
-            // 
-            this.firstDiceText.AutoEllipsis = true;
-            this.firstDiceText.Location = new System.Drawing.Point(15, 175);
-            this.firstDiceText.Name = "firstDiceText";
-            this.firstDiceText.Size = new System.Drawing.Size(320, 35);
-            this.firstDiceText.TabIndex = 3;
-            // 
-            // secondDiceText
-            // 
-            this.secondDiceText.AutoEllipsis = true;
-            this.secondDiceText.Location = new System.Drawing.Point(15, 220);
-            this.secondDiceText.Name = "secondDiceText";
-            this.secondDiceText.Size = new System.Drawing.Size(320, 35);
-            this.secondDiceText.TabIndex = 4;
-            this.secondDiceText.Click += new System.EventHandler(this.secondDiceText_Click);
-            // 
-            // startButton
-            // 
-            this.startButton.Location = new System.Drawing.Point(955, 623);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(160, 35);
-            this.startButton.TabIndex = 1;
-            this.startButton.Text = "START (test)";
-            this.startButton.Click += new System.EventHandler(this.startButton_Click);
-            // 
-            // resetButton
-            // 
-            this.resetButton.Location = new System.Drawing.Point(1121, 623);
-            this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(160, 35);
-            this.resetButton.TabIndex = 2;
-            this.resetButton.Text = "RESET (test)";
-            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
-            // 
-            // grpPlayer1
-            // 
-            this.grpPlayer1.Controls.Add(this.lblPoint1);
-            this.grpPlayer1.Controls.Add(this.picPlayer1);
-            this.grpPlayer1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpPlayer1.Location = new System.Drawing.Point(863, 87);
-            this.grpPlayer1.Name = "grpPlayer1";
-            this.grpPlayer1.Size = new System.Drawing.Size(192, 106);
-            this.grpPlayer1.TabIndex = 3;
-            this.grpPlayer1.TabStop = false;
-            this.grpPlayer1.Text = "First player";
-            this.grpPlayer1.Enter += new System.EventHandler(this.grpPlayer1_Enter);
-            // 
-            // lblPoint1
-            // 
-            this.lblPoint1.AutoSize = true;
-            this.lblPoint1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPoint1.Location = new System.Drawing.Point(139, 27);
-            this.lblPoint1.Name = "lblPoint1";
-            this.lblPoint1.Size = new System.Drawing.Size(36, 37);
-            this.lblPoint1.TabIndex = 4;
-            this.lblPoint1.Text = "0";
-            this.lblPoint1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // picPlayer1
-            // 
-            this.picPlayer1.Location = new System.Drawing.Point(20, 28);
-            this.picPlayer1.Name = "picPlayer1";
-            this.picPlayer1.Size = new System.Drawing.Size(66, 62);
-            this.picPlayer1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picPlayer1.TabIndex = 4;
-            this.picPlayer1.TabStop = false;
-            // 
-            // grpPlayer2
-            // 
-            this.grpPlayer2.Controls.Add(this.lblPoint2);
-            this.grpPlayer2.Controls.Add(this.picPlayer2);
-            this.grpPlayer2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpPlayer2.Location = new System.Drawing.Point(848, 233);
-            this.grpPlayer2.Name = "grpPlayer2";
-            this.grpPlayer2.Size = new System.Drawing.Size(207, 111);
-            this.grpPlayer2.TabIndex = 4;
-            this.grpPlayer2.TabStop = false;
-            this.grpPlayer2.Text = "Second player";
-            // 
-            // lblPoint2
-            // 
-            this.lblPoint2.AutoSize = true;
-            this.lblPoint2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPoint2.Location = new System.Drawing.Point(139, 40);
-            this.lblPoint2.Name = "lblPoint2";
-            this.lblPoint2.Size = new System.Drawing.Size(36, 37);
-            this.lblPoint2.TabIndex = 4;
-            this.lblPoint2.Text = "0";
-            // 
-            // picPlayer2
-            // 
-            this.picPlayer2.Location = new System.Drawing.Point(20, 28);
-            this.picPlayer2.Name = "picPlayer2";
-            this.picPlayer2.Size = new System.Drawing.Size(66, 62);
-            this.picPlayer2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picPlayer2.TabIndex = 4;
-            this.picPlayer2.TabStop = false;
-            // 
-            // Initializations
-            // 
-            this.Initializations.Controls.Add(this.numericUpDown1);
-            this.Initializations.Controls.Add(this.textBox3);
-            this.Initializations.Controls.Add(this.textBox2);
-            this.Initializations.Controls.Add(this.label3);
-            this.Initializations.Controls.Add(this.label2);
-            this.Initializations.Controls.Add(this.label1);
-            this.Initializations.Location = new System.Drawing.Point(12, 12);
-            this.Initializations.Name = "Initializations";
-            this.Initializations.Size = new System.Drawing.Size(528, 369);
-            this.Initializations.TabIndex = 5;
-            this.Initializations.TabStop = false;
-            this.Initializations.Text = "Initializations";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(299, 69);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 7;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(299, 312);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(270, 20);
-            this.textBox3.TabIndex = 6;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(299, 189);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(270, 20);
-            this.textBox2.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 312);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Second Player Name";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 189);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "First Player Name";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 71);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Rounds";
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.pictureBox4);
-            this.groupBox1.Controls.Add(this.radioButton4);
-            this.groupBox1.Controls.Add(this.pictureBox3);
-            this.groupBox1.Controls.Add(this.radioButton3);
-            this.groupBox1.Controls.Add(this.pictureBox2);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(564, 35);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 607);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Avatars ";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackgroundImage = global::HigherLuck.Properties.Resources.Icon04;
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox4.Location = new System.Drawing.Point(122, 468);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(128, 136);
-            this.pictureBox4.TabIndex = 7;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(45, 522);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(14, 13);
-            this.radioButton4.TabIndex = 6;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.UseVisualStyleBackColor = true;
-            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackgroundImage = global::HigherLuck.Properties.Resources.Icon03;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox3.Location = new System.Drawing.Point(122, 338);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(128, 144);
-            this.pictureBox3.TabIndex = 5;
-            this.pictureBox3.TabStop = false;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(45, 394);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(14, 13);
-            this.radioButton3.TabIndex = 4;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = global::HigherLuck.Properties.Resources.Icon02;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Location = new System.Drawing.Point(122, 198);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(128, 148);
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(45, 276);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(14, 13);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::HigherLuck.Properties.Resources.Icon01;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(122, 52);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(128, 143);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(34, 96);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(14, 13);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(624, 648);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(310, 55);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Set Up First player ";
-            this.button1.Click += new System.EventHandler(this.btnSetUpFirstPlayer_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(683, 763);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(310, 55);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Set Up Second player ";
-            this.button2.Click += new System.EventHandler(this.btnSetUpSecondPlayer_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(683, 824);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(310, 55);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "RESET ALL ";
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // BtnReport
-            // 
-            this.BtnReport.Location = new System.Drawing.Point(1079, 373);
-            this.BtnReport.Name = "BtnReport";
-            this.BtnReport.Size = new System.Drawing.Size(194, 82);
-            this.BtnReport.TabIndex = 10;
-            this.BtnReport.Text = "Show Result";
-            this.BtnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.BtnReport.UseVisualStyleBackColor = true;
-            this.BtnReport.Click += new System.EventHandler(this.BtnReport_Click);
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(1079, 87);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(194, 264);
-            this.listBox1.TabIndex = 11;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
-            // Report
-            // 
-            this.Report.AutoSize = true;
-            this.Report.Location = new System.Drawing.Point(1076, 71);
-            this.Report.Name = "Report";
-            this.Report.Size = new System.Drawing.Size(39, 13);
-            this.Report.TabIndex = 12;
-            this.Report.Text = "Report";
-            this.Report.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // Form1
-            // 
-            this.ClientSize = new System.Drawing.Size(1299, 749);
-            this.Controls.Add(this.Report);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.BtnReport);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.Initializations);
-            this.Controls.Add(this.grpPlayer2);
-            this.Controls.Add(this.grpPlayer1);
-            this.Controls.Add(this.gameArea);
-            this.Controls.Add(this.startButton);
-            this.Controls.Add(this.resetButton);
-            this.Name = "Form1";
-            this.Text = "Higher Luck - Part 2";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.gameArea.ResumeLayout(false);
-            this.grpPlayer1.ResumeLayout(false);
-            this.grpPlayer1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picPlayer1)).EndInit();
-            this.grpPlayer2.ResumeLayout(false);
-            this.grpPlayer2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picPlayer2)).EndInit();
-            this.Initializations.ResumeLayout(false);
-            this.Initializations.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            gameArea = new GroupBox();
+            roundText = new Label();
+            turnText = new Label();
+            rollButton = new Button();
+            firstDiceText = new Label();
+            secondDiceText = new Label();
+            startButton = new Button();
+            resetButton = new Button();
+            grpPlayer1 = new GroupBox();
+            lblPoint1 = new Label();
+            picPlayer1 = new PictureBox();
+            grpPlayer2 = new GroupBox();
+            lblPoint2 = new Label();
+            picPlayer2 = new PictureBox();
+            Initializations = new GroupBox();
+            numericUpDown1 = new NumericUpDown();
+            textBox3 = new TextBox();
+            textBox2 = new TextBox();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            groupBox1 = new GroupBox();
+            pictureBox4 = new PictureBox();
+            radioButton4 = new RadioButton();
+            pictureBox3 = new PictureBox();
+            radioButton3 = new RadioButton();
+            pictureBox2 = new PictureBox();
+            radioButton2 = new RadioButton();
+            pictureBox1 = new PictureBox();
+            radioButton1 = new RadioButton();
+            button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            BtnReport = new Button();
+            listBox1 = new ListBox();
+            Report = new Label();
+            gameArea.SuspendLayout();
+            grpPlayer1.SuspendLayout();
+            ((ISupportInitialize)(picPlayer1)).BeginInit();
+            grpPlayer2.SuspendLayout();
+            ((ISupportInitialize)(picPlayer2)).BeginInit();
+            Initializations.SuspendLayout();
+            ((ISupportInitialize)(numericUpDown1)).BeginInit();
+            groupBox1.SuspendLayout();
+            ((ISupportInitialize)(pictureBox4)).BeginInit();
+            ((ISupportInitialize)(pictureBox3)).BeginInit();
+            ((ISupportInitialize)(pictureBox2)).BeginInit();
+            ((ISupportInitialize)(pictureBox1)).BeginInit();
+            SuspendLayout();
+
+            
+            gameArea.Controls.Add(roundText);
+            gameArea.Controls.Add(turnText);
+            gameArea.Controls.Add(rollButton);
+            gameArea.Controls.Add(firstDiceText);
+            gameArea.Controls.Add(secondDiceText);
+            gameArea.Location = new Point(53, 414);
+            gameArea.Name = "gameArea";
+            gameArea.Size = new Size(422, 282);
+            gameArea.TabIndex = 0;
+            gameArea.TabStop = false;
+            gameArea.Text = "Game";
+            gameArea.Enter += new EventHandler(gameArea_Enter);
+            
+
+            roundText.Location = new Point(15, 25);
+            roundText.Name = "roundText";
+            roundText.Size = new Size(320, 25);
+            roundText.TabIndex = 0;
+            
+
+            turnText.AutoEllipsis = true;
+            turnText.BackColor = Color.Black;
+            turnText.ForeColor = Color.White;
+            turnText.Location = new Point(15, 60);
+            turnText.Name = "turnText";
+            turnText.Size = new Size(320, 45);
+            turnText.TabIndex = 1;
+            turnText.TextAlign = ContentAlignment.MiddleLeft;
+            
+
+            rollButton.Location = new Point(15, 120);
+            rollButton.Name = "rollButton";
+            rollButton.Size = new Size(320, 35);
+            rollButton.TabIndex = 2;
+            rollButton.Text = "ROLL";
+            rollButton.Click += new EventHandler(rollButton_Click);
+            
+
+            firstDiceText.AutoEllipsis = true;
+            firstDiceText.Location = new Point(15, 175);
+            firstDiceText.Name = "firstDiceText";
+            firstDiceText.Size = new Size(320, 35);
+            firstDiceText.TabIndex = 3;
+            
+
+            secondDiceText.AutoEllipsis = true;
+            secondDiceText.Location = new Point(15, 220);
+            secondDiceText.Name = "secondDiceText";
+            secondDiceText.Size = new Size(320, 35);
+            secondDiceText.TabIndex = 4;
+            secondDiceText.Click += new EventHandler(secondDiceText_Click);
+            
+
+            startButton.Location = new Point(955, 623);
+            startButton.Name = "startButton";
+            startButton.Size = new Size(160, 35);
+            startButton.TabIndex = 1;
+            startButton.Text = "START (test)";
+            startButton.Click += new EventHandler(startButton_Click);
+            
+
+            resetButton.Location = new Point(1121, 623);
+            resetButton.Name = "resetButton";
+            resetButton.Size = new Size(160, 35);
+            resetButton.TabIndex = 2;
+            resetButton.Text = "RESET (test)";
+            resetButton.Click += new EventHandler(resetButton_Click);
+            
+
+            grpPlayer1.Controls.Add(lblPoint1);
+            grpPlayer1.Controls.Add(picPlayer1);
+            grpPlayer1.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            grpPlayer1.Location = new Point(863, 87);
+            grpPlayer1.Name = "grpPlayer1";
+            grpPlayer1.Size = new Size(192, 106);
+            grpPlayer1.TabIndex = 3;
+            grpPlayer1.TabStop = false;
+            grpPlayer1.Text = "First player";
+            grpPlayer1.Enter += new EventHandler(grpPlayer1_Enter);
+            
+            
+            lblPoint1.AutoSize = true;
+            lblPoint1.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+            lblPoint1.Location = new Point(139, 27);
+            lblPoint1.Name = "lblPoint1";
+            lblPoint1.Size = new Size(36, 37);
+            lblPoint1.TabIndex = 4;
+            lblPoint1.Text = "0";
+            lblPoint1.Click += new EventHandler(label1_Click);
+            
+
+            picPlayer1.Location = new Point(20, 28);
+            picPlayer1.Name = "picPlayer1";
+            picPlayer1.Size = new Size(66, 62);
+            picPlayer1.SizeMode = PictureBoxSizeMode.Zoom;
+            picPlayer1.TabIndex = 4;
+            picPlayer1.TabStop = false;
+            
+            
+
+            grpPlayer2.Controls.Add(lblPoint2);
+            grpPlayer2.Controls.Add(picPlayer2);
+            grpPlayer2.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            grpPlayer2.Location = new Point(848, 233);
+            grpPlayer2.Name = "grpPlayer2";
+            grpPlayer2.Size = new Size(207, 111);
+            grpPlayer2.TabIndex = 4;
+            grpPlayer2.TabStop = false;
+            grpPlayer2.Text = "Second player";
+            
+
+
+            lblPoint2.AutoSize = true;
+            lblPoint2.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+            lblPoint2.Location = new Point(139, 40);
+            lblPoint2.Name = "lblPoint2";
+            lblPoint2.Size = new Size(36, 37);
+            lblPoint2.TabIndex = 4;
+            lblPoint2.Text = "0";
+            
+
+            picPlayer2.Location = new Point(20, 28);
+            picPlayer2.Name = "picPlayer2";
+            picPlayer2.Size = new Size(66, 62);
+            picPlayer2.SizeMode = PictureBoxSizeMode.Zoom;
+            picPlayer2.TabIndex = 4;
+            picPlayer2.TabStop = false;
+            
+
+
+            Initializations.Controls.Add(numericUpDown1);
+            Initializations.Controls.Add(textBox3);
+            Initializations.Controls.Add(textBox2);
+            Initializations.Controls.Add(label3);
+            Initializations.Controls.Add(label2);
+            Initializations.Controls.Add(label1);
+            Initializations.Location = new Point(12, 12);
+            Initializations.Name = "Initializations";
+            Initializations.Size = new Size(528, 369);
+            Initializations.TabIndex = 5;
+            Initializations.TabStop = false;
+            Initializations.Text = "Initializations";
+            
+
+
+            numericUpDown1.Location = new Point(299, 69);
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(120, 20);
+            numericUpDown1.TabIndex = 7;
+            numericUpDown1.Value = new decimal(new int[] { 5, 0, 0, 0 });
+            numericUpDown1.ValueChanged += new EventHandler(numericUpDown1_ValueChanged);
+            
+
+            textBox3.Location = new Point(299, 312);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(270, 20);
+            textBox3.TabIndex = 6;
+            
+
+            textBox2.Location = new Point(299, 189);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(270, 20);
+            textBox2.TabIndex = 5;
+            
+
+            label3.AutoSize = true;
+            label3.Location = new Point(24, 312);
+            label3.Name = "label3";
+            label3.Size = new Size(107, 13);
+            label3.TabIndex = 3;
+            label3.Text = "Second Player Name";
+            
+
+            label2.AutoSize = true;
+            label2.Location = new Point(24, 189);
+            label2.Name = "label2";
+            label2.Size = new Size(89, 13);
+            label2.TabIndex = 2;
+            label2.Text = "First Player Name";
+            
+
+            label1.AutoSize = true;
+            label1.Location = new Point(24, 71);
+            label1.Name = "label1";
+            label1.Size = new Size(44, 13);
+            label1.TabIndex = 1;
+            label1.Text = "Rounds";
+            label1.Click += new EventHandler(label1_Click_1);
+            
+
+            groupBox1.Controls.Add(pictureBox4);
+            groupBox1.Controls.Add(radioButton4);
+            groupBox1.Controls.Add(pictureBox3);
+            groupBox1.Controls.Add(radioButton3);
+            groupBox1.Controls.Add(pictureBox2);
+            groupBox1.Controls.Add(radioButton2);
+            groupBox1.Controls.Add(pictureBox1);
+            groupBox1.Controls.Add(radioButton1);
+            groupBox1.Location = new Point(564, 35);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(278, 607);
+            groupBox1.TabIndex = 6;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Avatars ";
+            groupBox1.Enter += new EventHandler(groupBox1_Enter);
+            
+
+            pictureBox4.BackgroundImage = global::HigherLuck.Properties.Resources.Icon04;
+            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox4.Location = new Point(122, 468);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(128, 136);
+            pictureBox4.TabIndex = 7;
+            pictureBox4.TabStop = false;
+            pictureBox4.Click += new EventHandler(pictureBox4_Click);
+            
+
+            radioButton4.AutoSize = true;
+            radioButton4.Location = new Point(45, 522);
+            radioButton4.Name = "radioButton4";
+            radioButton4.Size = new Size(14, 13);
+            radioButton4.TabIndex = 6;
+            radioButton4.TabStop = true;
+            radioButton4.UseVisualStyleBackColor = true;
+            radioButton4.CheckedChanged += new EventHandler(radioButton4_CheckedChanged);
+            
+
+            pictureBox3.BackgroundImage = global::HigherLuck.Properties.Resources.Icon03;
+            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox3.Location = new Point(122, 338);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(128, 144);
+            pictureBox3.TabIndex = 5;
+            pictureBox3.TabStop = false;
+            
+
+            radioButton3.AutoSize = true;
+            radioButton3.Location = new Point(45, 394);
+            radioButton3.Name = "radioButton3";
+            radioButton3.Size = new Size(14, 13);
+            radioButton3.TabIndex = 4;
+            radioButton3.TabStop = true;
+            radioButton3.UseVisualStyleBackColor = true;
+            
+
+            pictureBox2.BackgroundImage = global::HigherLuck.Properties.Resources.Icon02;
+            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox2.Location = new Point(122, 198);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(128, 148);
+            pictureBox2.TabIndex = 3;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += new EventHandler(pictureBox2_Click);
+           
+
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(45, 276);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(14, 13);
+            radioButton2.TabIndex = 2;
+            radioButton2.TabStop = true;
+            radioButton2.UseVisualStyleBackColor = true;
+            
+
+            pictureBox1.BackgroundImage = global::HigherLuck.Properties.Resources.Icon01;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Location = new Point(122, 52);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(128, 143);
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += new EventHandler(pictureBox1_Click);
+            
+
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(34, 96);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(14, 13);
+            radioButton1.TabIndex = 0;
+            radioButton1.TabStop = true;
+            radioButton1.UseVisualStyleBackColor = true;
+            
+
+            button1.Location = new Point(624, 648);
+            button1.Name = "button1";
+            button1.Size = new Size(310, 55);
+            button1.TabIndex = 7;
+            button1.Text = "Set Up First player ";
+            button1.Click += new EventHandler(btnSetUpFirstPlayer_Click);
+            
+
+            button2.Location = new Point(683, 763);
+            button2.Name = "button2";
+            button2.Size = new Size(310, 55);
+            button2.TabIndex = 8;
+            button2.Text = "Set Up Second player ";
+            button2.Click += new EventHandler(btnSetUpSecondPlayer_Click);
+            
+
+            button3.Location = new Point(683, 824);
+            button3.Name = "button3";
+            button3.Size = new Size(310, 55);
+            button3.TabIndex = 9;
+            button3.Text = "RESET ALL ";
+            button3.Click += new EventHandler(button3_Click);
+            
+
+            BtnReport.Location = new Point(1079, 373);
+            BtnReport.Name = "BtnReport";
+            BtnReport.Size = new Size(194, 82);
+            BtnReport.TabIndex = 10;
+            BtnReport.Text = "Show Result";
+            BtnReport.TextImageRelation = TextImageRelation.ImageAboveText;
+            BtnReport.UseVisualStyleBackColor = true;
+            BtnReport.Click += new EventHandler(BtnReport_Click);
+            
+
+            listBox1.FormattingEnabled = true;
+            listBox1.Location = new Point(1079, 87);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(194, 264);
+            listBox1.TabIndex = 11;
+            listBox1.SelectedIndexChanged += new EventHandler(listBox1_SelectedIndexChanged);
+            
+
+            Report.AutoSize = true;
+            Report.Location = new Point(1076, 71);
+            Report.Name = "Report";
+            Report.Size = new Size(39, 13);
+            Report.TabIndex = 12;
+            Report.Text = "Report";
+            Report.Click += new EventHandler(label4_Click);
+            
+
+            ClientSize = new Size(1299, 749);
+            Controls.Add(Report);
+            Controls.Add(listBox1);
+            Controls.Add(BtnReport);
+            Controls.Add(button3);
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Controls.Add(groupBox1);
+            Controls.Add(Initializations);
+            Controls.Add(grpPlayer2);
+            Controls.Add(grpPlayer1);
+            Controls.Add(gameArea);
+            Controls.Add(startButton);
+            Controls.Add(resetButton);
+            Name = "Form1";
+            Text = "Higher Luck - Part 2";
+            Load += new EventHandler(Form1_Load);
+            gameArea.ResumeLayout(false);
+            grpPlayer1.ResumeLayout(false);
+            grpPlayer1.PerformLayout();
+            ((ISupportInitialize)(picPlayer1)).EndInit();
+            grpPlayer2.ResumeLayout(false);
+            grpPlayer2.PerformLayout();
+            ((ISupportInitialize)(picPlayer2)).EndInit();
+            Initializations.ResumeLayout(false);
+            Initializations.PerformLayout();
+            ((ISupportInitialize)(numericUpDown1)).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((ISupportInitialize)(pictureBox4)).EndInit();
+            ((ISupportInitialize)(pictureBox3)).EndInit();
+            ((ISupportInitialize)(pictureBox2)).EndInit();
+            ((ISupportInitialize)(pictureBox1)).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -509,3 +475,4 @@ namespace HigherLuck
         private Label Report;
     }
 }
+
