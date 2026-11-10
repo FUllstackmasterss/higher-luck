@@ -11,6 +11,8 @@ namespace HigherLuck
         Game game = new Game();
         private Player player1;
         private Player player2;
+        private PictureBox firstDicePicture = new PictureBox();
+        private PictureBox secondDicePicture = new PictureBox();
 
         public Form1()
         {
@@ -144,8 +146,30 @@ namespace HigherLuck
                 secondDiceText.Text = game.secondName + ": " + game.secondDice;
             }
 
+            ShowDicePicture(firstDicePicture, game.firstDice);
+            ShowDicePicture(secondDicePicture, game.secondDice);
             UpdatePoints();
         }   
+
+        private void ShowDicePicture(PictureBox picture, int value)
+        {
+            Image previousImage = picture.Image;
+            picture.Image = null;
+
+            if (previousImage == null)
+            {
+                // There is no previous picture to release.
+            }
+            else
+            {
+                previousImage.Dispose();
+            }
+
+            if (value >= 1 && value <= 6)
+            {
+                picture.Image = LoadImage("Dice" + value + ".jpg");
+            }
+        }
 
        
         private static readonly string ImageFolder =
@@ -159,7 +183,7 @@ namespace HigherLuck
             {
                 using (Image temp = Image.FromFile(Path.Combine(ImageFolder, fileName)))
                 {
-                    return new Bitmap(temp);   
+                    return new Bitmap(temp);   // copy, so the file isn't locked
                 }
             }
             catch (Exception ex)
@@ -176,7 +200,7 @@ namespace HigherLuck
             pic.SizeMode = PictureBoxSizeMode.Zoom;
             if (pic.Image == null)
             {
-               
+                
             }
             else
             {
@@ -241,7 +265,7 @@ namespace HigherLuck
             }
             if (picPlayer2.Image == null)
             {
-               
+                
             }
             else
             {
@@ -636,7 +660,17 @@ namespace HigherLuck
             numericUpDown1.SetBounds(165, 32, 150, 25);
             textBox2.SetBounds(165, 82, 150, 25);
             textBox3.SetBounds(165, 132, 150, 25);
-            gameArea.SetBounds(15, 245, 345, 285);
+            gameArea.SetBounds(15, 245, 345, 350);
+            firstDiceText.SetBounds(15, 175, 150, 30);
+            secondDiceText.SetBounds(180, 175, 150, 30);
+            firstDicePicture.Name = "firstDicePicture";
+            firstDicePicture.SetBounds(15, 210, 135, 125);
+            firstDicePicture.SizeMode = PictureBoxSizeMode.Zoom;
+            secondDicePicture.Name = "secondDicePicture";
+            secondDicePicture.SetBounds(180, 210, 135, 125);
+            secondDicePicture.SizeMode = PictureBoxSizeMode.Zoom;
+            gameArea.Controls.Add(firstDicePicture);
+            gameArea.Controls.Add(secondDicePicture);
             groupBox1.SetBounds(375, 45, 180, 375);
             RadioButton[] radios = { radioButton1, radioButton2, radioButton3, radioButton4 };
             PictureBox[] pictures = { pictureBox1, pictureBox2, pictureBox3, pictureBox4 };
