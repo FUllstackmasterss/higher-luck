@@ -29,8 +29,10 @@ namespace HigherLuck
             this.resetButton = new System.Windows.Forms.Button();
             this.grpPlayer1 = new System.Windows.Forms.GroupBox();
             this.lblPoint1 = new System.Windows.Forms.Label();
+            this.picPlayer1 = new System.Windows.Forms.PictureBox();
             this.grpPlayer2 = new System.Windows.Forms.GroupBox();
             this.lblPoint2 = new System.Windows.Forms.Label();
+            this.picPlayer2 = new System.Windows.Forms.PictureBox();
             this.Initializations = new System.Windows.Forms.GroupBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -39,22 +41,25 @@ namespace HigherLuck
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.picPlayer2 = new System.Windows.Forms.PictureBox();
-            this.picPlayer1 = new System.Windows.Forms.PictureBox();
+            this.BtnReport = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.Report = new System.Windows.Forms.Label();
             this.gameArea.SuspendLayout();
             this.grpPlayer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer1)).BeginInit();
             this.grpPlayer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer2)).BeginInit();
             this.Initializations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -62,8 +67,6 @@ namespace HigherLuck
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPlayer2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // gameArea
@@ -73,9 +76,9 @@ namespace HigherLuck
             this.gameArea.Controls.Add(this.rollButton);
             this.gameArea.Controls.Add(this.firstDiceText);
             this.gameArea.Controls.Add(this.secondDiceText);
-            this.gameArea.Location = new System.Drawing.Point(30, 487);
+            this.gameArea.Location = new System.Drawing.Point(53, 414);
             this.gameArea.Name = "gameArea";
-            this.gameArea.Size = new System.Drawing.Size(616, 397);
+            this.gameArea.Size = new System.Drawing.Size(422, 282);
             this.gameArea.TabIndex = 0;
             this.gameArea.TabStop = false;
             this.gameArea.Text = "Game";
@@ -127,7 +130,7 @@ namespace HigherLuck
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(1068, 657);
+            this.startButton.Location = new System.Drawing.Point(955, 623);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(160, 35);
             this.startButton.TabIndex = 1;
@@ -136,7 +139,7 @@ namespace HigherLuck
             // 
             // resetButton
             // 
-            this.resetButton.Location = new System.Drawing.Point(1258, 657);
+            this.resetButton.Location = new System.Drawing.Point(1121, 623);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(160, 35);
             this.resetButton.TabIndex = 2;
@@ -148,9 +151,9 @@ namespace HigherLuck
             this.grpPlayer1.Controls.Add(this.lblPoint1);
             this.grpPlayer1.Controls.Add(this.picPlayer1);
             this.grpPlayer1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpPlayer1.Location = new System.Drawing.Point(1068, 88);
+            this.grpPlayer1.Location = new System.Drawing.Point(863, 87);
             this.grpPlayer1.Name = "grpPlayer1";
-            this.grpPlayer1.Size = new System.Drawing.Size(250, 125);
+            this.grpPlayer1.Size = new System.Drawing.Size(192, 106);
             this.grpPlayer1.TabIndex = 3;
             this.grpPlayer1.TabStop = false;
             this.grpPlayer1.Text = "First player";
@@ -162,19 +165,28 @@ namespace HigherLuck
             this.lblPoint1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPoint1.Location = new System.Drawing.Point(139, 27);
             this.lblPoint1.Name = "lblPoint1";
-            this.lblPoint1.Size = new System.Drawing.Size(69, 73);
+            this.lblPoint1.Size = new System.Drawing.Size(36, 37);
             this.lblPoint1.TabIndex = 4;
             this.lblPoint1.Text = "0";
             this.lblPoint1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // picPlayer1
+            // 
+            this.picPlayer1.Location = new System.Drawing.Point(20, 28);
+            this.picPlayer1.Name = "picPlayer1";
+            this.picPlayer1.Size = new System.Drawing.Size(66, 62);
+            this.picPlayer1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picPlayer1.TabIndex = 4;
+            this.picPlayer1.TabStop = false;
             // 
             // grpPlayer2
             // 
             this.grpPlayer2.Controls.Add(this.lblPoint2);
             this.grpPlayer2.Controls.Add(this.picPlayer2);
             this.grpPlayer2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpPlayer2.Location = new System.Drawing.Point(1068, 237);
+            this.grpPlayer2.Location = new System.Drawing.Point(848, 233);
             this.grpPlayer2.Name = "grpPlayer2";
-            this.grpPlayer2.Size = new System.Drawing.Size(250, 125);
+            this.grpPlayer2.Size = new System.Drawing.Size(207, 111);
             this.grpPlayer2.TabIndex = 4;
             this.grpPlayer2.TabStop = false;
             this.grpPlayer2.Text = "Second player";
@@ -185,9 +197,18 @@ namespace HigherLuck
             this.lblPoint2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPoint2.Location = new System.Drawing.Point(139, 40);
             this.lblPoint2.Name = "lblPoint2";
-            this.lblPoint2.Size = new System.Drawing.Size(69, 73);
+            this.lblPoint2.Size = new System.Drawing.Size(36, 37);
             this.lblPoint2.TabIndex = 4;
             this.lblPoint2.Text = "0";
+            // 
+            // picPlayer2
+            // 
+            this.picPlayer2.Location = new System.Drawing.Point(20, 28);
+            this.picPlayer2.Name = "picPlayer2";
+            this.picPlayer2.Size = new System.Drawing.Size(66, 62);
+            this.picPlayer2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picPlayer2.TabIndex = 4;
+            this.picPlayer2.TabStop = false;
             // 
             // Initializations
             // 
@@ -197,9 +218,9 @@ namespace HigherLuck
             this.Initializations.Controls.Add(this.label3);
             this.Initializations.Controls.Add(this.label2);
             this.Initializations.Controls.Add(this.label1);
-            this.Initializations.Location = new System.Drawing.Point(30, 25);
+            this.Initializations.Location = new System.Drawing.Point(12, 12);
             this.Initializations.Name = "Initializations";
-            this.Initializations.Size = new System.Drawing.Size(616, 412);
+            this.Initializations.Size = new System.Drawing.Size(528, 369);
             this.Initializations.TabIndex = 5;
             this.Initializations.TabStop = false;
             this.Initializations.Text = "Initializations";
@@ -208,7 +229,7 @@ namespace HigherLuck
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(299, 69);
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 31);
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 7;
             this.numericUpDown1.Value = new decimal(new int[] {
             5,
@@ -221,14 +242,14 @@ namespace HigherLuck
             // 
             this.textBox3.Location = new System.Drawing.Point(299, 312);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(270, 31);
+            this.textBox3.Size = new System.Drawing.Size(270, 20);
             this.textBox3.TabIndex = 6;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(299, 189);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(270, 31);
+            this.textBox2.Size = new System.Drawing.Size(270, 20);
             this.textBox2.TabIndex = 5;
             // 
             // label3
@@ -236,7 +257,7 @@ namespace HigherLuck
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(24, 312);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(214, 25);
+            this.label3.Size = new System.Drawing.Size(107, 13);
             this.label3.TabIndex = 3;
             this.label3.Text = "Second Player Name";
             // 
@@ -245,7 +266,7 @@ namespace HigherLuck
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(24, 189);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(183, 25);
+            this.label2.Size = new System.Drawing.Size(89, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "First Player Name";
             // 
@@ -254,7 +275,7 @@ namespace HigherLuck
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(24, 71);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 25);
+            this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Rounds";
             this.label1.Click += new System.EventHandler(this.label1_Click_1);
@@ -269,58 +290,101 @@ namespace HigherLuck
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(683, 44);
+            this.groupBox1.Location = new System.Drawing.Point(564, 35);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(310, 622);
+            this.groupBox1.Size = new System.Drawing.Size(278, 607);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Avatars ";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // radioButton1
+            // pictureBox4
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(34, 96);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(27, 26);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(45, 276);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(27, 26);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(45, 394);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(27, 26);
-            this.radioButton3.TabIndex = 4;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.pictureBox4.BackgroundImage = global::HigherLuck.Properties.Resources.Icon04;
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox4.Location = new System.Drawing.Point(122, 468);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(128, 136);
+            this.pictureBox4.TabIndex = 7;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
             this.radioButton4.Location = new System.Drawing.Point(45, 522);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(27, 26);
+            this.radioButton4.Size = new System.Drawing.Size(14, 13);
             this.radioButton4.TabIndex = 6;
             this.radioButton4.TabStop = true;
             this.radioButton4.UseVisualStyleBackColor = true;
             this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackgroundImage = global::HigherLuck.Properties.Resources.Icon03;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox3.Location = new System.Drawing.Point(122, 338);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(128, 144);
+            this.pictureBox3.TabIndex = 5;
+            this.pictureBox3.TabStop = false;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(45, 394);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(14, 13);
+            this.radioButton3.TabIndex = 4;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = global::HigherLuck.Properties.Resources.Icon02;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox2.Location = new System.Drawing.Point(122, 198);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(128, 148);
+            this.pictureBox2.TabIndex = 3;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(45, 276);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(14, 13);
+            this.radioButton2.TabIndex = 2;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::HigherLuck.Properties.Resources.Icon01;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(122, 52);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(128, 143);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(34, 96);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(14, 13);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(683, 702);
+            this.button1.Location = new System.Drawing.Point(624, 648);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(310, 55);
             this.button1.TabIndex = 7;
@@ -345,70 +409,42 @@ namespace HigherLuck
             this.button3.Text = "RESET ALL ";
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // pictureBox4
+            // BtnReport
             // 
-            this.pictureBox4.BackgroundImage = global::HigherLuck.Properties.Resources.Icon04;
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox4.Location = new System.Drawing.Point(122, 468);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(128, 136);
-            this.pictureBox4.TabIndex = 7;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            this.BtnReport.Location = new System.Drawing.Point(1079, 373);
+            this.BtnReport.Name = "BtnReport";
+            this.BtnReport.Size = new System.Drawing.Size(194, 82);
+            this.BtnReport.TabIndex = 10;
+            this.BtnReport.Text = "Show Result";
+            this.BtnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnReport.UseVisualStyleBackColor = true;
+            this.BtnReport.Click += new System.EventHandler(this.BtnReport_Click);
             // 
-            // pictureBox3
+            // listBox1
             // 
-            this.pictureBox3.BackgroundImage = global::HigherLuck.Properties.Resources.Icon03;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox3.Location = new System.Drawing.Point(122, 338);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(128, 144);
-            this.pictureBox3.TabIndex = 5;
-            this.pictureBox3.TabStop = false;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(1079, 87);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(194, 264);
+            this.listBox1.TabIndex = 11;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // pictureBox2
+            // Report
             // 
-            this.pictureBox2.BackgroundImage = global::HigherLuck.Properties.Resources.Icon02;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Location = new System.Drawing.Point(122, 198);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(128, 148);
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::HigherLuck.Properties.Resources.Icon01;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(122, 52);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(128, 143);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // picPlayer2
-            // 
-            this.picPlayer2.Location = new System.Drawing.Point(20, 28);
-            this.picPlayer2.Name = "picPlayer2";
-            this.picPlayer2.Size = new System.Drawing.Size(66, 62);
-            this.picPlayer2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picPlayer2.TabIndex = 4;
-            this.picPlayer2.TabStop = false;
-            // 
-            // picPlayer1
-            // 
-            this.picPlayer1.Location = new System.Drawing.Point(20, 28);
-            this.picPlayer1.Name = "picPlayer1";
-            this.picPlayer1.Size = new System.Drawing.Size(66, 62);
-            this.picPlayer1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picPlayer1.TabIndex = 4;
-            this.picPlayer1.TabStop = false;
+            this.Report.AutoSize = true;
+            this.Report.Location = new System.Drawing.Point(1076, 71);
+            this.Report.Name = "Report";
+            this.Report.Size = new System.Drawing.Size(39, 13);
+            this.Report.TabIndex = 12;
+            this.Report.Text = "Report";
+            this.Report.Click += new System.EventHandler(this.label4_Click);
             // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(1924, 1050);
+            this.ClientSize = new System.Drawing.Size(1299, 749);
+            this.Controls.Add(this.Report);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.BtnReport);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -425,8 +461,10 @@ namespace HigherLuck
             this.gameArea.ResumeLayout(false);
             this.grpPlayer1.ResumeLayout(false);
             this.grpPlayer1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer1)).EndInit();
             this.grpPlayer2.ResumeLayout(false);
             this.grpPlayer2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picPlayer2)).EndInit();
             this.Initializations.ResumeLayout(false);
             this.Initializations.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -436,9 +474,8 @@ namespace HigherLuck
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPlayer2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPlayer1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -467,5 +504,8 @@ namespace HigherLuck
         private Button button1;
         private Button button2;
         private Button button3;
+        private Button BtnReport;
+        private ListBox listBox1;
+        private Label Report;
     }
 }

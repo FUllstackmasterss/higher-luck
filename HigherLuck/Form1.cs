@@ -405,5 +405,34 @@ namespace HigherLuck
         {
             ResetPart3();
         }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                listBox1.Items.Clear();
+
+                string[] lines = File.ReadAllLines("results.txt");
+
+                foreach (string line in lines)
+                {
+                    listBox1.Items.Add(line);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("No results yet!");
+            }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
