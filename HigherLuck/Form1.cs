@@ -22,8 +22,6 @@ namespace HigherLuck
             numericUpDown1.Minimum = 5;
             numericUpDown1.Value = 5;
 
-
-            ConfigureLayout();
             ShowGame();
         }
 
@@ -88,11 +86,11 @@ namespace HigherLuck
                 bool saved = SaveResult(result);
                 if (saved == true)
                 {
-                    MessageBox.Show(result + "\nResult saved.", "Game result");
+                    MessageBox.Show(result + "\n\n GAME OVER", "Game result");
                 }
                 else
                 {
-                    MessageBox.Show(result + "\nResult could not be saved. Record the scores before closing this message.", "Game result");
+                    MessageBox.Show(result + "\n\n GAME OVER \n\n PS: Result could not be saved.", "Game result");
                 }
                 ResetPart3();
             }
@@ -105,7 +103,7 @@ namespace HigherLuck
 
         private void ShowGame()
         {
-            roundText.Text = "Round: " + game.round + " / " + game.rounds;
+            roundText.Text = "Round: " + game.round;
             rollButton.Enabled = game.started;
 
             if (game.started == true)
@@ -128,46 +126,17 @@ namespace HigherLuck
                 turnText.Text = "Waiting for START";
             }
 
-            if (game.firstDice == 0)
-            {
-                firstDiceText.Text = "Player 1: -";
-            }
-            else
-            {
-                firstDiceText.Text = game.firstName + ": " + game.firstDice;
-            }
+            ShowDicePicture(game.firstDice);
+            ShowDicePicture(game.secondDice);
 
-            if (game.secondDice == 0)
-            {
-                secondDiceText.Text = "Player 2: -";
-            }
-            else
-            {
-                secondDiceText.Text = game.secondName + ": " + game.secondDice;
-            }
-
-            ShowDicePicture(firstDicePicture, game.firstDice);
-            ShowDicePicture(secondDicePicture, game.secondDice);
             UpdatePoints();
         }   
 
-        private void ShowDicePicture(PictureBox picture, int value)
+        private void ShowDicePicture(int value)
         {
-            Image previousImage = picture.Image;
-            picture.Image = null;
-
-            if (previousImage == null)
-            {
-                // There is no previous picture to release.
-            }
-            else
-            {
-                previousImage.Dispose();
-            }
-
             if (value >= 1 && value <= 6)
             {
-                picture.Image = LoadImage("Dice" + value + ".jpg");
+                pictureBox5.Image = LoadImage("Dice" + value + ".jpg");
             }
         }
 
@@ -183,7 +152,7 @@ namespace HigherLuck
             {
                 using (Image temp = Image.FromFile(Path.Combine(ImageFolder, fileName)))
                 {
-                    return new Bitmap(temp);   // copy, so the file isn't locked
+                    return new Bitmap(temp);
                 }
             }
             catch (Exception ex)
@@ -467,6 +436,7 @@ namespace HigherLuck
             numericUpDown1.Value = 5;
             numericUpDown1.Enabled = true;
             listBox1.Items.Clear();
+            pictureBox5.Image = null;
 
             for (int i = 0; i < avatarRadios.Length; i++)
             {
@@ -500,12 +470,6 @@ namespace HigherLuck
         {
 
         }
-
-        private void secondDiceText_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void label1_Click_1(object sender, EventArgs e)
         {
 
@@ -616,10 +580,14 @@ namespace HigherLuck
             string winner = "Draw";
             if (game.firstPoints > game.secondPoints) winner = game.firstName;
             else if (game.secondPoints > game.firstPoints) winner = game.secondName;
-            return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " | " +
-                game.firstName + ": " + game.firstPoints + " | " +
-                game.secondName + ": " + game.secondPoints + " | Rounds: " +
-                game.rounds + " | Winner: " + winner;
+
+            if (winner == "Draw")
+            {
+                return "The game is a tie";
+            } else
+            {
+                return "The winner is " + winner;
+            }
         }
 
         private bool SaveResult(string result)
@@ -639,68 +607,6 @@ namespace HigherLuck
                 return false;
             }
         }
-
-        
-        private void ConfigureLayout()
-        {
-            Text = "Fullstackmasterss - Higher Luck";
-            AutoScaleMode = AutoScaleMode.Dpi;
-            AutoScroll = true;
-            ClientSize = new Size(1100, 650);
-            StartPosition = FormStartPosition.CenterScreen;
-            Label teamName = new Label();
-            teamName.Text = "Fullstackmasterss";
-            teamName.SetBounds(15, 10, 300, 25);
-            Controls.Add(teamName);
-
-            Initializations.SetBounds(15, 45, 345, 185);
-            label1.SetBounds(15, 35, 100, 25);
-            label2.SetBounds(15, 85, 130, 25);
-            label3.SetBounds(15, 135, 130, 25);
-            numericUpDown1.SetBounds(165, 32, 150, 25);
-            textBox2.SetBounds(165, 82, 150, 25);
-            textBox3.SetBounds(165, 132, 150, 25);
-            gameArea.SetBounds(15, 245, 345, 350);
-            firstDiceText.SetBounds(15, 175, 150, 30);
-            secondDiceText.SetBounds(180, 175, 150, 30);
-            firstDicePicture.Name = "firstDicePicture";
-            firstDicePicture.SetBounds(15, 210, 135, 125);
-            firstDicePicture.SizeMode = PictureBoxSizeMode.Zoom;
-            secondDicePicture.Name = "secondDicePicture";
-            secondDicePicture.SetBounds(180, 210, 135, 125);
-            secondDicePicture.SizeMode = PictureBoxSizeMode.Zoom;
-            gameArea.Controls.Add(firstDicePicture);
-            gameArea.Controls.Add(secondDicePicture);
-            groupBox1.SetBounds(375, 45, 180, 375);
-            RadioButton[] radios = { radioButton1, radioButton2, radioButton3, radioButton4 };
-            PictureBox[] pictures = { pictureBox1, pictureBox2, pictureBox3, pictureBox4 };
-            for (int i = 0; i < 4; i++)
-            {
-                radios[i].SetBounds(15, 55 + i * 85, 20, 20);
-                pictures[i].SetBounds(50, 25 + i * 85, 95, 75);
-            }
-            button1.SetBounds(375, 435, 180, 40);
-            button2.SetBounds(375, 485, 180, 40);
-            button3.SetBounds(375, 545, 180, 40);
-            button1.Text = "Set Up First Player";
-            button2.Text = "Set Up Second Player";
-            button3.Text = "RESET ALL";
-            grpPlayer1.SetBounds(570, 45, 220, 150);
-            grpPlayer2.SetBounds(570, 215, 220, 150);
-            picPlayer1.SetBounds(15, 30, 100, 100);
-            picPlayer2.SetBounds(15, 30, 100, 100);
-            lblPoint1.Location = new Point(135, 60);
-            lblPoint2.Location = new Point(135, 60);
-            startButton.SetBounds(570, 385, 220, 40);
-            startButton.Text = "START";
-            resetButton.Visible = false;
-            Report.Location = new Point(810, 45);
-            listBox1.SetBounds(810, 75, 270, 430);
-            listBox1.HorizontalScrollbar = true;
-            BtnReport.SetBounds(810, 525, 270, 40);
-            BtnReport.Text = "SHOW RESULT";
-        }
-
         private void AvatarPicture_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < avatarPictures.Length; i++)
@@ -712,6 +618,10 @@ namespace HigherLuck
             }
         }
 
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
