@@ -1,4 +1,4 @@
-﻿namespace HigherLuck
+﻿namespace FULL_STACK_MASTERS_Project1
 {
     public class Player
     {

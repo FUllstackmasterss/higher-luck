@@ -3,7 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace HigherLuck
+namespace FULL_STACK_MASTERS_Project1
 {
  
     public partial class Form1 : Form

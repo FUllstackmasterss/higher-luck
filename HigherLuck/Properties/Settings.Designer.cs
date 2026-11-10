@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HigherLuck.Properties
+namespace FULL_STACK_MASTERS_Project1.Properties
 {
 
 
