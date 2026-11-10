@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -21,17 +21,23 @@ namespace HigherLuck
             numericUpDown1.Value = 5;
 
 
+            ConfigureLayout();
             ShowGame();
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            StartPart2(textBox2.Text, textBox3.Text, (int)numericUpDown1.Value);
+            if (player1 == null || player2 == null)
+            {
+                MessageBox.Show("Set up both players first.");
+                return;
+            }
+            StartPart2(player1.Name, player2.Name, (int)numericUpDown1.Value);
         }
 
         private void resetButton_Click(object sender, EventArgs e)
         {
-            ResetPart2();
+            ResetPart3();
         }
 
         public void StartPart2(string firstName, string secondName, int rounds)
@@ -64,19 +70,35 @@ namespace HigherLuck
             game.secondName = secondName.Trim();
             game.rounds = rounds;
             game.Start();
+            numericUpDown1.Enabled = false;
+            UpdateStartButton();
             ShowGame();
         }
 
         private void rollButton_Click(object sender, EventArgs e)
         {
+            if (game.started == false) return;
             game.Roll();
             ShowGame();
+            if (game.finished)
+            {
+                string result = ResultText();
+                bool saved = SaveResult(result);
+                if (saved == true)
+                {
+                    MessageBox.Show(result + "\nResult saved.", "Game result");
+                }
+                else
+                {
+                    MessageBox.Show(result + "\nResult could not be saved. Record the scores before closing this message.", "Game result");
+                }
+                ResetPart3();
+            }
         }
 
         public void ResetPart2()
         {
-            game.Reset();
-            ShowGame();
+            ResetPart3();
         }
 
         private void ShowGame()
@@ -135,9 +157,9 @@ namespace HigherLuck
         {
             try
             {
-                using (var temp = Image.FromFile(Path.Combine(ImageFolder, fileName)))
+                using (Image temp = Image.FromFile(Path.Combine(ImageFolder, fileName)))
                 {
-                    return new Bitmap(temp);   // copy, so the file isn't locked
+                    return new Bitmap(temp);   
                 }
             }
             catch (Exception ex)
@@ -152,11 +174,18 @@ namespace HigherLuck
         {
             grp.Text = p.Name.ToUpper();
             pic.SizeMode = PictureBoxSizeMode.Zoom;
-            pic.Image?.Dispose();
+            if (pic.Image == null)
+            {
+               
+            }
+            else
+            {
+                pic.Image.Dispose();
+            }
             pic.Image = LoadImage(p.AvatarFile);
         }
 
-        // Call from "Set Up First Player" after creating player1
+        
         private void ShowFirstPlayer()
         {
             game.firstName = player1.Name;
@@ -164,7 +193,7 @@ namespace HigherLuck
             UpdateStartButton();
         }
 
-        // Call from "Set Up Second Player" after creating player2
+        
         private void ShowSecondPlayer()
         {
             game.secondName = player2.Name;
@@ -172,7 +201,7 @@ namespace HigherLuck
             UpdateStartButton();
         }
 
-        // Points always come from the Game object
+        
         private void UpdatePoints()
         {
             lblPoint1.Text = game.firstPoints.ToString();
@@ -181,10 +210,18 @@ namespace HigherLuck
 
         private void UpdateStartButton()
         {
-            startButton.Enabled = (player1 != null && player2 != null);
+            startButton.Enabled = false;
+            if (player1 == null || player2 == null)
+            {
+                return;
+            }
+            if (game.started == false)
+            {
+                startButton.Enabled = true;
+            }
         }
 
-        // Call from RESET ALL and after a game ends
+        
         private void ResetSection4()
         {
             game.Reset();
@@ -194,8 +231,22 @@ namespace HigherLuck
             grpPlayer1.Text = "First Player";
             grpPlayer2.Text = "Second Player";
 
-            picPlayer1.Image?.Dispose();
-            picPlayer2.Image?.Dispose();
+            if (picPlayer1.Image == null)
+            {
+                
+            }
+            else
+            {
+                picPlayer1.Image.Dispose();
+            }
+            if (picPlayer2.Image == null)
+            {
+               
+            }
+            else
+            {
+                picPlayer2.Image.Dispose();
+            }
             picPlayer1.Image = LoadImage(DefaultAvatar);
             picPlayer2.Image = LoadImage(DefaultAvatar);
 
@@ -209,18 +260,15 @@ namespace HigherLuck
 
         private void SetUpPart3()
         {
-            avatarRadios = new[] { radioButton1, radioButton2, radioButton3, radioButton4 };
-            avatarPictures = new[] { pictureBox1, pictureBox2, pictureBox3, pictureBox4 };
+            avatarRadios = new RadioButton[] { radioButton1, radioButton2, radioButton3, radioButton4 };
+            avatarPictures = new PictureBox[] { pictureBox1, pictureBox2, pictureBox3, pictureBox4 };
 
             for (int i = 0; i < avatarRadios.Length; i++)
             {
-                RadioButton radio = avatarRadios[i];
-
                 avatarPictures[i].Cursor = Cursors.Hand;
-                avatarPictures[i].Click += (s, e) => { if (radio.Enabled) radio.Checked = true; };
-                radio.CheckedChanged += AvatarRadio_CheckedChanged;
+                avatarPictures[i].Click += new EventHandler(AvatarPicture_Click);
+                avatarRadios[i].CheckedChanged += new EventHandler(AvatarRadio_CheckedChanged);
             }
-
             ResetPart3();
         }
 
@@ -236,87 +284,151 @@ namespace HigherLuck
         private void AvatarRadio_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton radio = (RadioButton)sender;
-            if (!radio.Checked) return;
+            if (radio.Checked == false) 
+                
+                return;
 
             string file = SelectedAvatarFile();
-            if (file == null) return;
+            if (file == null)
+                
+                
+                
+                return;
 
             PictureBox target;
             if (player1 == null) target = picPlayer1;
+
+
             else if (player2 == null) target = picPlayer2;
+
+
             else return;
 
             target.SizeMode = PictureBoxSizeMode.Zoom;
-            target.Image?.Dispose();
+            if (target.Image == null)
+            {
+                
+            }
+            else
+            {
+                target.Image.Dispose();
+            }
             target.Image = LoadImage(file);
         }
 
         private void LockSelectedAvatar()
         {
-            foreach (RadioButton radio in avatarRadios)
+            for (int i = 0; i < avatarRadios.Length; i++)
             {
-                if (radio.Checked)
+                if (avatarRadios[i].Checked == true)
                 {
-                    radio.Checked = false;
-                    radio.Enabled = false;
+                    avatarRadios[i].Checked = false;
+                    avatarRadios[i].Enabled = false;
                 }
             }
         }
 
         private void btnSetUpFirstPlayer_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            if (game.started == true)
             {
-                MessageBox.Show("Enter the first player's name.");
-                textBox2.Focus();
                 return;
             }
 
-            string avatarFile = SelectedAvatarFile();
-            if (avatarFile == null)
+            if (player1 == null)
             {
-                MessageBox.Show("Choose an avatar for the first player.");
-                return;
+                if (textBox2.Text.Trim() == "")
+                {
+                    MessageBox.Show("Enter the first player's name.");
+                    textBox2.Focus();
+                    return;
+                }
+
+                if (textBox3.Text.Trim() == "")
+                {
+                    MessageBox.Show("Enter the second player's name.");
+                    textBox3.Focus();
+                    return;
+                }
+
+                string avatarFile = SelectedAvatarFile();
+
+                if (avatarFile == null)
+                {
+                    MessageBox.Show("Choose an avatar for the first player.");
+                    return;
+                }
+
+                player1 = new Player(
+                    textBox2.Text.Trim().ToUpper(),
+                    avatarFile
+                );
+
+                ShowFirstPlayer();
+
+                textBox2.Enabled = false;
+                button1.Enabled = false;
+
+                LockSelectedAvatar();
+                UpdateSetupButtons();
             }
-
-            player1 = new Player(textBox2.Text.Trim().ToUpper(), avatarFile);
-            ShowFirstPlayer();
-
-            textBox2.Enabled = false;
-            button1.Enabled = false;
-            button2.Enabled = true;
-            LockSelectedAvatar();
         }
 
         private void btnSetUpSecondPlayer_Click(object sender, EventArgs e)
         {
+            if (game.started == true)
+            {
+                return;
+            }
+
             if (player1 == null)
             {
                 MessageBox.Show("Set up the first player first.");
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            if (player2 == null)
             {
-                MessageBox.Show("Enter the second player's name.");
-                textBox3.Focus();
-                return;
+                if (textBox3.Text.Trim() == "")
+                {
+                    MessageBox.Show("Enter the second player's name.");
+                    textBox3.Focus();
+                    return;
+                }
+
+                string avatarFile = SelectedAvatarFile();
+
+                if (avatarFile == null)
+                {
+                    MessageBox.Show("Choose an avatar for the second player.");
+                    return;
+                }
+
+                if (avatarFile == player1.AvatarFile)
+                {
+                    MessageBox.Show("Choose a different avatar for the second player.");
+                    return;
+                }
+
+                player2 = new Player(
+                    textBox3.Text.Trim().ToUpper(),
+                    avatarFile
+                );
+
+                ShowSecondPlayer();
+
+                textBox3.Enabled = false;
+                button2.Enabled = false;
+
+                LockSelectedAvatar();
+
+                for (int i = 0; i < avatarRadios.Length; i++)
+                {
+                    avatarRadios[i].Enabled = false;
+                }
+
+                UpdateSetupButtons();
             }
-
-            string avatarFile = SelectedAvatarFile();
-            if (avatarFile == null)
-            {
-                MessageBox.Show("Choose an avatar for the second player.");
-                return;
-            }
-
-            player2 = new Player(textBox3.Text.Trim().ToUpper(), avatarFile);
-            ShowSecondPlayer();
-
-            textBox3.Enabled = false;
-            button2.Enabled = false;
-            LockSelectedAvatar();
-            foreach (RadioButton radio in avatarRadios) radio.Enabled = false;
         }
 
         private void ResetPart3()
@@ -329,15 +441,16 @@ namespace HigherLuck
             textBox2.Enabled = true;
             textBox3.Enabled = true;
             numericUpDown1.Value = 5;
+            numericUpDown1.Enabled = true;
+            listBox1.Items.Clear();
 
-            foreach (RadioButton radio in avatarRadios)
+            for (int i = 0; i < avatarRadios.Length; i++)
             {
-                radio.Enabled = true;
-                radio.Checked = false;
+                avatarRadios[i].Enabled = true;
+                avatarRadios[i].Checked = false;
             }
 
-            button1.Enabled = true;
-            button2.Enabled = false;
+            UpdateSetupButtons();
             textBox2.Focus();
         }
 
@@ -349,6 +462,9 @@ namespace HigherLuck
         private void Form1_Load(object sender, EventArgs e)
         {
             SetUpPart3();
+            textBox2.TextChanged += NamesChanged;
+            textBox3.TextChanged += NamesChanged;
+            UpdateSetupButtons();
         }
 
         private void grpPlayer1_Enter(object sender, EventArgs e)
@@ -413,20 +529,26 @@ namespace HigherLuck
 
         private void BtnReport_Click(object sender, EventArgs e)
         {
+            listBox1.Items.Clear();
             try
             {
-                listBox1.Items.Clear();
-
-                string[] lines = File.ReadAllLines("results.txt");
-
-                foreach (string line in lines)
+                if (File.Exists(resultPath) == false)
                 {
-                    listBox1.Items.Add(line);
+                    listBox1.Items.Add("No saved results yet.");
+                    return;
+                }
+                using (StreamReader file = new StreamReader(resultPath))
+                {
+                    while (file.EndOfStream == false)
+                    {
+                        string line = file.ReadLine();
+                        listBox1.Items.Add(line);
+                    }
                 }
             }
-            catch
+            catch (Exception error)
             {
-                MessageBox.Show("No results yet!");
+                MessageBox.Show("Could not read results: " + error.Message);
             }
         }
 
@@ -434,5 +556,128 @@ namespace HigherLuck
         {
 
         }
+
+        
+        private string resultPath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            "Fullstackmasterss", "HigherLuck", "results.txt");
+
+        private void NamesChanged(object sender, EventArgs e)
+        {
+            UpdateSetupButtons();
+        }
+
+        private void UpdateSetupButtons()
+        {
+            button1.Enabled = false;
+            button2.Enabled = false;
+            if (textBox2.Text.Trim() == "" || textBox3.Text.Trim() == "" || game.started == true)
+            {
+                UpdateStartButton();
+                return;
+            }
+            if (player1 == null)
+            {
+                button1.Enabled = true;
+            }
+            else if (player2 == null)
+            {
+                button2.Enabled = true;
+            }
+            UpdateStartButton();
+        }
+
+        private string ResultText()
+        {
+            string winner = "Draw";
+            if (game.firstPoints > game.secondPoints) winner = game.firstName;
+            else if (game.secondPoints > game.firstPoints) winner = game.secondName;
+            return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " | " +
+                game.firstName + ": " + game.firstPoints + " | " +
+                game.secondName + ": " + game.secondPoints + " | Rounds: " +
+                game.rounds + " | Winner: " + winner;
+        }
+
+        private bool SaveResult(string result)
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(resultPath));
+                using (StreamWriter file = new StreamWriter(resultPath, true))
+                {
+                    file.WriteLine(result);
+                }
+                return true;
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Could not save results: " + error.Message);
+                return false;
+            }
+        }
+
+        
+        private void ConfigureLayout()
+        {
+            Text = "Fullstackmasterss - Higher Luck";
+            AutoScaleMode = AutoScaleMode.Dpi;
+            AutoScroll = true;
+            ClientSize = new Size(1100, 650);
+            StartPosition = FormStartPosition.CenterScreen;
+            Label teamName = new Label();
+            teamName.Text = "Fullstackmasterss";
+            teamName.SetBounds(15, 10, 300, 25);
+            Controls.Add(teamName);
+
+            Initializations.SetBounds(15, 45, 345, 185);
+            label1.SetBounds(15, 35, 100, 25);
+            label2.SetBounds(15, 85, 130, 25);
+            label3.SetBounds(15, 135, 130, 25);
+            numericUpDown1.SetBounds(165, 32, 150, 25);
+            textBox2.SetBounds(165, 82, 150, 25);
+            textBox3.SetBounds(165, 132, 150, 25);
+            gameArea.SetBounds(15, 245, 345, 285);
+            groupBox1.SetBounds(375, 45, 180, 375);
+            RadioButton[] radios = { radioButton1, radioButton2, radioButton3, radioButton4 };
+            PictureBox[] pictures = { pictureBox1, pictureBox2, pictureBox3, pictureBox4 };
+            for (int i = 0; i < 4; i++)
+            {
+                radios[i].SetBounds(15, 55 + i * 85, 20, 20);
+                pictures[i].SetBounds(50, 25 + i * 85, 95, 75);
+            }
+            button1.SetBounds(375, 435, 180, 40);
+            button2.SetBounds(375, 485, 180, 40);
+            button3.SetBounds(375, 545, 180, 40);
+            button1.Text = "Set Up First Player";
+            button2.Text = "Set Up Second Player";
+            button3.Text = "RESET ALL";
+            grpPlayer1.SetBounds(570, 45, 220, 150);
+            grpPlayer2.SetBounds(570, 215, 220, 150);
+            picPlayer1.SetBounds(15, 30, 100, 100);
+            picPlayer2.SetBounds(15, 30, 100, 100);
+            lblPoint1.Location = new Point(135, 60);
+            lblPoint2.Location = new Point(135, 60);
+            startButton.SetBounds(570, 385, 220, 40);
+            startButton.Text = "START";
+            resetButton.Visible = false;
+            Report.Location = new Point(810, 45);
+            listBox1.SetBounds(810, 75, 270, 430);
+            listBox1.HorizontalScrollbar = true;
+            BtnReport.SetBounds(810, 525, 270, 40);
+            BtnReport.Text = "SHOW RESULT";
+        }
+
+        private void AvatarPicture_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < avatarPictures.Length; i++)
+            {
+                if (sender == avatarPictures[i] && avatarRadios[i].Enabled == true)
+                {
+                    avatarRadios[i].Checked = true;
+                }
+            }
+        }
+
     }
 }
+

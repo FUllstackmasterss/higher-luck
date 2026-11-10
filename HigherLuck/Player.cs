@@ -2,9 +2,9 @@
 {
     public class Player
     {
-        public string Name { get; set; }
-        public string AvatarFile { get; set; }
-        public int Point { get; set; }
+        public string Name;
+        public string AvatarFile;
+        public int Point;
 
         public Player(string name, string avatarFile)
         {
